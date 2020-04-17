@@ -1,8 +1,10 @@
 
-# convert_dict = {"A":14,"K":13,"Q":12,"J":11,"T":10}
-# for i in range(2, 10):
-#     convert_dict[str(i)] = i
-# print(convert_dict)
+card_to_spot_map = {"A":14,"K":13,"Q":12,"J":11,"T":10}
+for i in range(2, 10):
+    card_to_spot_map[str(i)] = i
+# print(card_to_spot_map)
+
+PLAYER = ["N","E","S","W"]
 
 class Hand(object):
     def __init__(self, hand_str, position):
@@ -14,8 +16,9 @@ class Hand(object):
         self.raw_card['C'] = list(hand_list[3])
         
         self.card = {}
-        for suit in ['S', 'H', 'D', 'C']:
-            self.card[suit] = [convert_dict[i] for i in self.raw_card[suit]]
+        SUIT = ['S','H','D','C']
+        for suit in SUIT:
+            self.card[suit] = [card_to_spot_map[i] for i in self.raw_card[suit]]
 
         self.position = position # N/E/S/W
 

@@ -10,6 +10,9 @@ class PlayRecord(object):
         self.board_backup = copy.deepcopy(board)
         self.nstrick = 0
         self.ewtrick = 0
+        
+        # 
+        self.memorize = {}
 
     def trick_winner(self, cards, leader):
         # cards : [("C", 14), ("D",2), ("S", 13), ("C", 2)], representing the card from N,E,S,W
@@ -44,7 +47,7 @@ class PlayRecord(object):
                         largest_player = player
         return largest_player
 
-    def can_play_list(self, player):
+    def can_play_list(self, player, leading_card):
         ret = []
         this_hand = self.board.hand[player]
         SUIT = ['S','H','D','C']
@@ -52,17 +55,20 @@ class PlayRecord(object):
             for card in this_hand.card[suit]:
                 ret.append((suit, card))
         return ret
+
     def recover_board(self):
         self.board = copy.deepcopy(self.board_backup)
         self.nstrick = 0
         self.ewtrick = 0
-        print(self.board.south.spade)
+        # print(self.board.south.spade)
+    def 
 
 if __name__ == "__main__":
     board_str = "N:AJT9.732.9764.T5 85.A96.T32.A9874 KQ73.QT8.AJ8.KQ3 642.KJ54.KQ5.J62"
     board = Board(board_str)
-    print(board)
     pr = PlayRecord(board, "NT")
+
+    print(board)
 
     can_play_list = {}
     can_play_list['N'] = pr.can_play_list('N')
